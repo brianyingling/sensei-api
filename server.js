@@ -12,10 +12,13 @@ var DB_URI = process.env.DB_URI;
 var NODE_ENV = process.env.NODE_ENV;
 var PORT = process.env.PORT || 3000;
 
-mongoose.connect(DB_URI);
+try {
+    mongoose.connect(DB_URI);
+} catch (e) {
+    console.error('MONGOOSE ERROR:', e);
+}
 
 var db = mongoose.connection;
-
 db.on('error', err => console.error("DB ERR:", err));
 
 if(NODE_ENV !== 'test') {
@@ -44,6 +47,7 @@ app.get('/temperatures/latest', temperatures.latest);
 app.listen(PORT, function() {
     console.log('Sensei API');
     console.log('Listening on ' + PORT);
+    console.log('MONGO DB:', DB_URI);
 });
 
 module.exports = app;
