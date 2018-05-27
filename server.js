@@ -12,13 +12,23 @@ var DB_URI = process.env.DB_URI;
 var NODE_ENV = process.env.NODE_ENV;
 var PORT = process.env.PORT || 3000;
 
-try {
-    mongoose.connect(DB_URI);
-    var db = mongoose.connection;
-    db.on('error', err => console.error("DB ERR:", err));
-} catch (e) {
-    console.error('MONGOOSE ERROR:', e);
+function connectToDb() {
+    mongoose.connect(DB_URI)
+        .then(() => console.log('DB Connection Successful'))
+        .catch((e) => {
+            console.error('DB CONNECTION ERROR:', e);
+            setTimeout(connectToDb, 5000);
+        });
 }
+
+connectToDb();
+// try {
+//     mongoose.connect(DB_URI);
+//     var db = mongoose.connection;
+//     db.on('error', err => console.error("DB ERR:", err));
+// } catch (e) {
+//     console.error('MONGOOSE ERROR:', e);
+// }
 
 if(NODE_ENV !== 'test') {
     //use morgan to log at command line
