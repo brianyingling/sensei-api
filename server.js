@@ -14,12 +14,11 @@ var PORT = process.env.PORT || 3000;
 
 try {
     mongoose.connect(DB_URI);
+    var db = mongoose.connection;
+    db.on('error', err => console.error("DB ERR:", err));
 } catch (e) {
     console.error('MONGOOSE ERROR:', e);
 }
-
-var db = mongoose.connection;
-db.on('error', err => console.error("DB ERR:", err));
 
 if(NODE_ENV !== 'test') {
     //use morgan to log at command line
