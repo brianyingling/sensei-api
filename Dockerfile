@@ -16,3 +16,7 @@ EXPOSE 80
 # Run app
 CMD ["npm", "start"]
 
+HEALTHCHECK --start-period=2s \
+    --retries=5 \
+    CMD curl -f http://localhost/ || exit 1
+

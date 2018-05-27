@@ -3,8 +3,9 @@ node {
     withEnv(['DB_URI=mongodb://0.0.0.0:27017/sensei', 'NODE_ENV=dev']) {
         docker.image("mongo").withRun() { db ->
             docker.build('brianyingling/sensei-api').inside {
-                sh 'npm install'
-                sh 'npm test'
+                sh 'docker-compose up'
+                // sh 'npm install'
+                // sh 'npm test'
             }
         }
     }
