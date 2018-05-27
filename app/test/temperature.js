@@ -75,7 +75,6 @@ describe('Temperatures', () => {
                 .post('/temperatures')
                 .send(temp)
                 .end((err, res) => {
-                    console.log("BODY:", res.body);
                     res.should.have.status(200);
                     res.body.should.have.property('value');
                     res.body.should.have.property('scale');
