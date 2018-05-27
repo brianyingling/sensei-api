@@ -1,10 +1,7 @@
 pipeline {
 
     agent {
-        docker {
-            image 'node'
-            args '-u root'
-        }
+        dockerfile true
     }
 
     stages {
@@ -12,6 +9,12 @@ pipeline {
             steps {
                 echo 'Building...'
                 sh 'npm install'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Testing...'
+                sh 'npm test'
             }
         }
     }
