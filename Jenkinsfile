@@ -1,6 +1,6 @@
 node {
     checkout scm
-    withEnv(['DB_URI=mongodb://mongo:27017/sensei', 'NODE_ENV=dev']) {
+    withEnv(['DB_URI=mongodb://localhost:27017/sensei', 'NODE_ENV=dev']) {
         docker.image("mongo").withRun() { db ->
             docker.build('brianyingling/sensei-api').inside {
                 sh 'npm install'
