@@ -20,7 +20,7 @@ pipeline {
     }
 
     environment {
-        DB_URI      = 'mongodb://206.189.237.191:27017/sensei'
+        // SENSEI_DB_URI      = 'mongodb://206.189.237.191:27017/sensei'
         NODE_ENV    = 'dev'
     }
 

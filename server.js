@@ -8,12 +8,12 @@ var home = require('./app/controllers/home');
 var temperatures = require('./app/controllers/temperatures');
 var app = express();
 
-var DB_URI = process.env.DB_URI;
+var SENSEI_DB_URI = process.env.SENSEI_DB_URI;
 var NODE_ENV = process.env.NODE_ENV;
 var PORT = process.env.PORT || 3000;
 
 function connectToDb() {
-    mongoose.connect(DB_URI)
+    mongoose.connect(SENSEI_DB_URI)
         .then(() => console.log('DB Connection Successful'))
         .catch((e) => {
             console.error('DB CONNECTION ERROR:', e);
@@ -56,7 +56,7 @@ app.get('/temperatures/latest', temperatures.latest);
 app.listen(PORT, function() {
     console.log('Sensei API');
     console.log('Listening on ' + PORT);
-    console.log('MONGO DB:', DB_URI);
+    console.log('MONGO DB:', SENSEI_DB_URI);
 });
 
 module.exports = app;
