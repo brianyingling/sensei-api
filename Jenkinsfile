@@ -4,6 +4,11 @@ pipeline {
         dockerfile true
     }
 
+    environment {
+        DB_URI      = 'mongodb://mongo:27017/sensei'
+        NODE_ENV    = 'dev'
+    }
+
     stages {
         stage('Build') {
             steps {
