@@ -19,10 +19,10 @@ pipeline {
         dockerfile true
     }
 
-    environment {
-        // SENSEI_DB_URI      = 'mongodb://206.189.237.191:27017/sensei'
-        NODE_ENV    = 'dev'
-    }
+    // environment {
+    //     // SENSEI_DB_URI      = 'mongodb://206.189.237.191:27017/sensei'
+    //     NODE_ENV    = 'dev'
+    // }
 
     stages {
         stage('Build') {
