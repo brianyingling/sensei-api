@@ -1,12 +1,14 @@
 let Temperature = require('../models/temperature');
 
 function create(req, res) {
+    console.log('create here');
     const body = req.body;
     const device = req.body.id;
     const temp = req.body.temperature;
     const data = {...temp, device };
     let temperature = new Temperature(data);
     temperature.save((err, temp) => {
+        console.log('create save err:', err);
         if (err) return res.send(err);
         res.send(temp);
     });
