@@ -22,13 +22,6 @@ function connectToDb() {
 }
 
 connectToDb();
-// try {
-//     mongoose.connect(DB_URI);
-//     var db = mongoose.connection;
-//     db.on('error', err => console.error("DB ERR:", err));
-// } catch (e) {
-//     console.error('MONGOOSE ERROR:', e);
-// }
 
 if(NODE_ENV !== 'test') {
     //use morgan to log at command line
@@ -54,9 +47,7 @@ app.route('/temperatures')
 app.get('/temperatures/latest', temperatures.latest);
 
 app.listen(PORT, function() {
-    console.log('Sensei API');
-    console.log('Listening on ' + PORT);
-    console.log('MONGO DB:', SENSEI_DB_URI);
+    console.log('Sensei API listening on port ' + PORT);
 });
 
 module.exports = app;
