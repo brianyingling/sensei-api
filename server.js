@@ -12,6 +12,10 @@ var SENSEI_DB_URI = process.env.SENSEI_DB_URI;
 var NODE_ENV = process.env.NODE_ENV;
 var PORT = process.env.PORT || 3000;
 
+process.on('uncaughtException', function (err) {
+    console.log('uncaught exception:', err);
+}); 
+
 function connectToDb() {
     mongoose.connect(SENSEI_DB_URI)
         .then(() => console.log('DB Connection Successful'))
