@@ -1,9 +1,11 @@
 node {
     checkout scm
     withEnv(['DB_URI=mongodb://0.0.0.0:27017/sensei', 'NODE_ENV=dev']) {
-        docker.image("mongo").withRun() { db ->
+        docker.image("mongo:latest").withRun("--name mongo") { db ->
             docker.build('brianyingling/sensei-api').inside {
-                sh 'docker-compose up'
+                sh 'nc -z mongo 21017'
+                sh 'npm run test'
+                // sh 'docker-compose up'
                 // sh 'npm install'
                 // sh 'npm test'
             }
