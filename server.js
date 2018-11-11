@@ -17,7 +17,12 @@ process.on('uncaughtException', function (err) {
 }); 
 
 function connectToDb() {
-    mongoose.connect(SENSEI_DB_URI)
+    mongoose.connect(SENSEI_DB_URI+'?authSource=sensei&w=1', {
+        server: {
+            reconnectTries: Number.MAX_VALUE,
+            reconnectInterval: 1000
+        }
+    })
         .then(() => console.log('DB Connection Successful'))
         .catch((e) => {
             console.error('DB CONNECTION ERROR:', e);
