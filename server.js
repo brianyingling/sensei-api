@@ -6,6 +6,7 @@ var bodyParser = require('body-parser');
 var health = require('./app/controllers/health');
 var home = require('./app/controllers/home');
 var temperatures = require('./app/controllers/temperatures');
+var locations = require('./app/controllers/locations');
 var app = express();
 
 var SENSEI_DB_URI = process.env.SENSEI_DB_URI;
@@ -55,6 +56,10 @@ app.route('/temperatures')
     .post(temperatures.create);
 
 app.get('/temperatures/latest', temperatures.latest);
+
+app.route('/locations')
+    .get(locations.index)
+    .post(locations.create);
 
 app.listen(PORT, function() {
     console.log('Sensei API listening on port ' + PORT);
